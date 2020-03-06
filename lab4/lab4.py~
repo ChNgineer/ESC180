@@ -1,0 +1,49 @@
+from utilities import *
+
+def parse_story(file_name):
+	file = open('test_text_parsing.txt', 'r')
+	F = file.read().lower().split()
+	F1 = ' '.join(F).replace('(',"").replace(')',"").replace('{',"").replace('}',"").replace('"',"").replace('[',"").replace(']',"").replace('!'," ! ").replace('?'," ? ").replace('.'," . ").replace(','," , ").replace(':'," : ").replace(';'," ; ")
+	F2 = F1.split()
+	return F2
+
+def get_prob_from_counts(counts):
+	prob = []
+	for i in counts:
+		prob.append(i / sum(counts))
+	return (prob)
+
+def build_ngram_counts(words, n):
+
+	m = 1
+	dictionary = {}
+	grams = []
+
+	for i in range(len(words)-1):
+		while m < n:
+			grams.append(words[i+m])
+			m += 1
+		dictionary[words[i]] = grams
+		m = 1
+	print(dictionary)
+			
+'''
+def prune_ngram_counts(counts, prune_len):
+
+def probify_ngram_counts(counts):
+
+def build_ngram_model(words, n):
+
+def gen_bot_list(ngram_model, seed, num_tokens=0):
+
+def gen_bot_text(token_list, bad_author):
+
+def write_story(file_name, text, title, student_name, author, year):
+'''
+if __name__ == '__main__':
+
+	words = ['the', 'child', 'will', 'go', 'out', 'to', 'play', ',', 'and', 'the', 'child', 'can', 'not', 'be', 'sad', 'anymore', '.']
+
+	parse_story('test_text_parsing.txt')
+	get_prob_from_counts([10,20,40,30])
+	build_ngram_counts(words, 2)
